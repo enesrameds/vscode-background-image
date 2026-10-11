@@ -59,10 +59,6 @@ how it was.
 - **Sticky scroll band and tab fills** — two checkboxes to get rid of the opaque strips
   that otherwise cut across your wallpaper.
 
-Here it is with *Apply to: Editor only*, so the wallpaper only shows up behind your code:
-
-![The wallpaper showing behind the editor](screenshots/editor-background.png)
-
 ---
 
 ## Commands
