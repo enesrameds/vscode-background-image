@@ -1,0 +1,246 @@
+{
+  "name": "background-image",
+  "displayName": "Background Image",
+  "description": "Set an image as your VS Code background. Control opacity, contrast, brightness, saturation, grayscale, blur, dim, size, position, repeat and scope from a live-preview panel.",
+  "version": "1.0.0",
+  "publisher": "enesRamed",
+  "license": "MIT",
+  "icon": "icon.png",
+  "markdown": "github",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enesramed/vscode-background-image.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "background",
+    "image",
+    "wallpaper",
+    "theme",
+    "opacity"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "background.settings",
+        "title": "Background Image Settings",
+        "category": "Background",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "background.chooseImage",
+        "title": "Choose Image...",
+        "category": "Background",
+        "icon": "$(file-media)"
+      },
+      {
+        "command": "background.apply",
+        "title": "Apply Background",
+        "category": "Background",
+        "icon": "$(check)"
+      },
+      {
+        "command": "background.remove",
+        "title": "Remove Background",
+        "category": "Background",
+        "icon": "$(close)"
+      },
+      {
+        "command": "background.reset",
+        "title": "Reset to Defaults",
+        "category": "Background",
+        "icon": "$(discard)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "background.settings",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "background.settings"
+        },
+        {
+          "command": "background.chooseImage"
+        },
+        {
+          "command": "background.apply"
+        },
+        {
+          "command": "background.remove"
+        },
+        {
+          "command": "background.reset"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Background Image",
+      "properties": {
+        "background.image": {
+          "type": "string",
+          "default": "",
+          "scope": "window",
+          "markdownDescription": "Path of the image used as the background (absolute path, or a path relative to the workspace)."
+        },
+        "background.enabled": {
+          "type": "boolean",
+          "default": false,
+          "scope": "window",
+          "description": "Enable the background image."
+        },
+        "background.autoApply": {
+          "type": "boolean",
+          "default": true,
+          "scope": "window",
+          "description": "Apply the background automatically whenever a setting changes (the window is reloaded to show changes)."
+        },
+        "background.opacity": {
+          "type": "number",
+          "default": 0.75,
+          "minimum": 0,
+          "maximum": 1,
+          "scope": "window",
+          "description": "Opacity of the image (0 = invisible, 1 = fully opaque)."
+        },
+        "background.contrast": {
+          "type": "number",
+          "default": 1.1,
+          "minimum": 0,
+          "maximum": 3,
+          "scope": "window",
+          "description": "Contrast of the image."
+        },
+        "background.brightness": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 3,
+          "scope": "window",
+          "description": "Brightness of the image."
+        },
+        "background.saturation": {
+          "type": "number",
+          "default": 1.1,
+          "minimum": 0,
+          "maximum": 3,
+          "scope": "window",
+          "description": "Color saturation of the image."
+        },
+        "background.grayscale": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 1,
+          "scope": "window",
+          "description": "How much of the image is converted to grayscale (0 = colored, 1 = fully gray)."
+        },
+        "background.blur": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 60,
+          "scope": "window",
+          "description": "Blur of the image in pixels. Useful to keep the code readable."
+        },
+        "background.dim": {
+          "type": "number",
+          "default": 0.35,
+          "minimum": 0,
+          "maximum": 1,
+          "scope": "window",
+          "description": "Dark layer drawn on top of the image (improves contrast and readability)."
+        },
+        "background.size": {
+          "type": "string",
+          "default": "cover",
+          "enum": [
+            "cover",
+            "contain",
+            "stretch"
+          ],
+          "enumDescriptions": [
+            "Fill the whole screen (crop to keep the aspect ratio).",
+            "Fit the whole image (leaves empty space).",
+            "Stretch the image to the screen (aspect ratio is distorted)."
+          ],
+          "scope": "window",
+          "description": "Sizing mode of the image."
+        },
+        "background.position": {
+          "type": "string",
+          "default": "center",
+          "enum": [
+            "center",
+            "top",
+            "bottom",
+            "left",
+            "right",
+            "top-left",
+            "top-right",
+            "bottom-left",
+            "bottom-right"
+          ],
+          "scope": "window",
+          "description": "Position of the image."
+        },
+        "background.repeat": {
+          "type": "string",
+          "default": "no-repeat",
+          "enum": [
+            "no-repeat",
+            "repeat",
+            "repeat-x",
+            "repeat-y"
+          ],
+          "enumDescriptions": [
+            "Do not repeat.",
+            "Repeat both horizontally and vertically.",
+            "Repeat horizontally.",
+            "Repeat vertically."
+          ],
+          "scope": "window",
+          "description": "Repeat mode of the image."
+        },
+        "background.area": {
+          "type": "string",
+          "default": "all",
+          "enum": [
+            "all",
+            "editor"
+          ],
+          "enumDescriptions": [
+            "The entire interface (title bar, side bars, status bar included).",
+            "The editor area only."
+          ],
+          "scope": "window",
+          "description": "Where the background image is applied."
+        },
+        "background.stickyScroll": {
+          "type": "boolean",
+          "default": true,
+          "scope": "window",
+          "description": "Show VS Code's sticky scroll band (pinned lines) at the top of the editor. When off, the band is hidden so the background stays continuous."
+        },
+        "background.transparentTabs": {
+          "type": "boolean",
+          "default": false,
+          "scope": "window",
+          "description": "Make the tab fills transparent so the background also shows behind the open tabs."
+        }
+      }
+    }
+  }
+}
