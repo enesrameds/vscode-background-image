@@ -1,6 +1,6 @@
 # Background Image
 
-Set any photo or wallpaper as your VS Code background — no settings files, no JSON, no
+Set any photo or wallpaper as your VS Code background no settings files, no JSON, no
 guessing what a value like `0.75` looks like.
 
 I built this because every background extension I tried made me hand-edit `settings.json`
